@@ -827,29 +827,6 @@ bool AudioSystem::isOffloadSupported(const audio_offload_info_t& info)
     return aps->isOffloadSupported(info);
 }
 
-#ifdef MTK_HARDWARE
-status_t AudioSystem::SetAudioData(int par1,size_t byte_len,void *ptr) {
-     ALOGD("SetAudioData");
-     const sp<IAudioFlinger>& af = AudioSystem::get_audio_flinger();
-     if (af == 0)
-     {
-         ALOGE("AudioSystem::SetAAudioData Error!! PERMISSION_DENIED");
-         return PERMISSION_DENIED;
-     }
-     return af->SetAudioData(par1,byte_len,ptr);
-}
-
-status_t AudioSystem::GetAudioData(int par1,size_t byte_len,void *ptr) {
-     ALOGD("GetAudioData");
-     const sp<IAudioFlinger>& af = AudioSystem::get_audio_flinger();
-     if (af == 0) {
-         ALOGE("AudioSystem::GetAAudioData Error!! PERMISSION_DENIED");
-         return PERMISSION_DENIED;
-     }
-     return af->GetAudioData(par1,byte_len,ptr);
-}
-#endif
-
 // ---------------------------------------------------------------------------
 
 void AudioSystem::AudioPolicyServiceClient::binderDied(const wp<IBinder>& who) {
@@ -867,5 +844,26 @@ extern "C" bool _ZN7android11AudioSystem17isSeparatedStreamE19audio_stream_type_
     return false;
 }
 #endif // USE_SAMSUNG_SEPARATEDSTREAM
+
+#ifdef MTK_MT6589
+extern "C" void _ZN7android11AudioSystem24getVoiceUnlockDLInstanceEv()
+{ return; }
+extern "C" int _ZN7android11AudioSystem23GetVoiceUnlockDLLatencyEv()
+{ return 0; }
+extern "C" int _ZN7android11AudioSystem17SetVoiceUnlockSRCEjj (uint, uint)
+{ return 0; }
+extern "C" bool _ZN7android11AudioSystem18startVoiceUnlockDLEv()
+{ return 0; }
+extern "C" int _ZN7android11AudioSystem15ReadRefFromRingEPvjS1_(void*, uint32_t,void*)
+{ return 0; }
+extern "C" int _ZN7android11AudioSystem20GetVoiceUnlockULTimeEPv(void*)
+{ return 0; }
+extern "C" void _ZN7android11AudioSystem25freeVoiceUnlockDLInstanceEv()
+{ return; }
+extern "C" bool _ZN7android11AudioSystem17stopVoiceUnlockDLEv()
+{ return 0; }
+extern "C" void _ZN7android15IATVCtrlService11asInterfaceERKNS_2spINS_7IBinderEEE()
+{ return; }
+#endif
 
 }; // namespace android

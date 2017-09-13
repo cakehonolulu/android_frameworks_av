@@ -83,8 +83,6 @@ LOCAL_STATIC_LIBRARIES := \
     libmedia_helper
 
 ifeq ($(BOARD_HAS_MTK_HARDWARE),true)
-    LOCAL_STATIC_LIBRARIES += libstagefright_audioresamplermtk
-    LOCAL_C_INCLUDES += $(TOP)/hardware/mediatek/media/include
     LOCAL_SHARED_LIBRARIES += libblisrc
 endif
 
@@ -140,8 +138,6 @@ LOCAL_SHARED_LIBRARIES := \
     liblog
 
 ifeq ($(BOARD_HAS_MTK_HARDWARE),true)
-    LOCAL_STATIC_LIBRARIES += libstagefright_audioresamplermtk
-    LOCAL_C_INCLUDES += $(TOP)/hardware/mediatek/media/include
     LOCAL_SHARED_LIBRARIES += libblisrc
 endif
 
