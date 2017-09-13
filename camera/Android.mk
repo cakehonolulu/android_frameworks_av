@@ -23,9 +23,12 @@ LOCAL_SRC_FILES:= \
 	ProCamera.cpp \
 	CameraBase.cpp \
 
-ifeq ($(BOARD_HAS_MTK_HARDWARE),true)
-	LOCAL_SRC_FILES+= \
-		MtkCameraParameters.cpp
+ifeq ($(TARGET_BOARD_PLATFORM),mt6589)
+LOCAL_SRC_FILES += \
+	MtkCamera.cpp \
+	MtkCameraParameters.cpp \
+	MtkCameraMMP.cpp \
+	MtkCameraProfile.cpp
 endif
 
 LOCAL_SHARED_LIBRARIES := \
@@ -43,6 +46,10 @@ LOCAL_C_INCLUDES += \
 
 ifeq ($(BOARD_CAMERA_HAVE_ISO),true)
 	LOCAL_CFLAGS += -DHAVE_ISO
+endif
+
+ifeq ($(TARGET_BOARD_PLATFORM),mt6589)
+LOCAL_CFLAGS += -DMTK_MT6589
 endif
 
 ifeq ($(BOARD_USES_QCOM_HARDWARE),true)
