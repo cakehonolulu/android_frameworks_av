@@ -407,26 +407,6 @@ OMX_ERRORTYPE SoftVPXEncoder::internalGetParameter(OMX_INDEXTYPE index,
             return OMX_ErrorNone;
         }
 
-        // VP8 specific parameters that use extension headers
-        case OMX_IndexParamVideoVp8: {
-            OMX_VIDEO_PARAM_VP8TYPE *vp8Params =
-                (OMX_VIDEO_PARAM_VP8TYPE *)param;
-
-            if (!isValidOMXParam(vp8Params)) {
-                return OMX_ErrorBadParameter;
-            }
-
-            if (vp8Params->nPortIndex != kOutputPortIndex) {
-                return OMX_ErrorUnsupportedIndex;
-            }
-
-            vp8Params->eProfile = OMX_VIDEO_VP8ProfileMain;
-            vp8Params->eLevel = mLevel;
-            vp8Params->nDCTPartitions = mDCTPartitions;
-            vp8Params->bErrorResilientMode = mErrorResilience;
-            return OMX_ErrorNone;
-        }
-
         case OMX_IndexParamVideoProfileLevelQuerySupported: {
             OMX_VIDEO_PARAM_PROFILELEVELTYPE *profileAndLevel =
                 (OMX_VIDEO_PARAM_PROFILELEVELTYPE *)param;
@@ -540,17 +520,6 @@ OMX_ERRORTYPE SoftVPXEncoder::internalSetParameter(OMX_INDEXTYPE index,
                 return OMX_ErrorBadParameter;
             }
             return internalSetFormatParams(portFormatType);
-        }
-
-        case OMX_IndexParamVideoVp8: {
-            const OMX_VIDEO_PARAM_VP8TYPE *vp8Params =
-                (const OMX_VIDEO_PARAM_VP8TYPE*) param;
-
-            if (!isValidOMXParam(vp8Params)) {
-                return OMX_ErrorBadParameter;
-            }
-
-            return internalSetVp8Params(vp8Params);
         }
 
         case OMX_IndexParamVideoProfileLevelCurrent: {

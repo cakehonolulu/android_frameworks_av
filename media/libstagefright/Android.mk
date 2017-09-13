@@ -192,17 +192,6 @@ ifeq ($(BOARD_HAS_MTK_HARDWARE),true)
     ifeq ($(BOARD_MTK_OMX_USES_PRIVATE_YUV),true)
         LOCAL_CFLAGS += -DMTK_OMX_USES_PRIVATE_YUV
     endif
-
-    LOCAL_C_INCLUDES += \
-        $(TOP)/hardware/mediatek/media/include
-
-    LOCAL_SHARED_LIBRARIES +=  \
-        libdpframework \
-        libstagefright_memutil
-
-    LOCAL_STATIC_LIBRARIES += \
-        libstagefright_bufferallocator \
-        libstagefright_mtkcolorconverter
 endif
 
 LOCAL_SRC_FILES += \
