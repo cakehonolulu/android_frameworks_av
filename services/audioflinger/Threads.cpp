@@ -87,6 +87,9 @@
 #include "postpro_patch.h"
 #endif
 
+#ifdef MTK_HARDWARE
+#include "AudioResamplermtk.h"
+#endif
 // ----------------------------------------------------------------------------
 
 // Note: the following macro is used for extremely verbose logging message.  In
@@ -170,6 +173,16 @@ static const int kPriorityFastMixer = 3;
 // See the client's minBufCount and mNotificationFramesAct calculations for details.
 static const int kFastTrackMultiplier = 2;
 
+#ifdef MTK_HARDWARE
+void inline MTK_downmix_to_mono_i16_from_stereo_i16(int16_t *dst, const int16_t *src, size_t count)
+{
+    ALOGD("MTK_downmix_to_mono_i16_from_stereo_i16");
+    while (count--) {
+        *dst++ = src[0];
+        src += 2;
+    }
+}
+#endif
 // ----------------------------------------------------------------------------
 
 #ifdef ADD_BATTERY_DATA
@@ -4947,8 +4960,13 @@ bool AudioFlinger::RecordThread::threadLoop()
                                     upmix_to_stereo_i16_from_mono_i16((int16_t *)dst,
                                             (int16_t *)src, framesIn);
                                 } else {
+#if MTK_HARDWARE
+                                    MTK_downmix_to_mono_i16_from_stereo_i16((int16_t *)dst,
+                                            (int16_t *)src, framesIn);
+#else
                                     downmix_to_mono_i16_from_stereo_i16((int16_t *)dst,
                                             (int16_t *)src, framesIn);
+#endif
                                 }
                             }
                         }
@@ -5031,8 +5049,13 @@ bool AudioFlinger::RecordThread::threadLoop()
                         ditherAndClamp(mRsmpOutBuffer, mRsmpOutBuffer, framesOut);
                         // the resampler always outputs stereo samples:
                         // do post stereo to mono conversion
+#ifdef MTK_HARDWARE
+                        MTK_downmix_to_mono_i16_from_stereo_i16(buffer.i16, (int16_t *)mRsmpOutBuffer,
+                                framesOut);
+#else
                         downmix_to_mono_i16_from_stereo_i16(buffer.i16, (int16_t *)mRsmpOutBuffer,
                                 framesOut);
+#endif
                     } else {
                         ditherAndClamp((int32_t *)buffer.raw, mRsmpOutBuffer, framesOut);
                     }
@@ -5712,7 +5735,11 @@ void AudioFlinger::RecordThread::readInputParameters()
         } else {
             channelCount = 2;
         }
+#ifdef MTK_HARDWARE
+        mResampler = AudioResampler::create(16, channelCount, mReqSampleRate, AudioResampler::MTK_QUALITY);
+#else
         mResampler = AudioResampler::create(16, channelCount, mReqSampleRate);
+#endif
         mResampler->setSampleRate(mSampleRate);
         mResampler->setVolume(AudioMixer::UNITY_GAIN, AudioMixer::UNITY_GAIN);
         mRsmpOutBuffer = new int32_t[mFrameCount * FCC_2];

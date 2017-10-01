@@ -44,6 +44,10 @@ LOCAL_SRC_FILES:=               \
     ServiceUtilities.cpp        \
     AudioResamplerCubic.cpp.arm \
     AudioResamplerSinc.cpp.arm
+ifeq ($(MTK_HARDWARE),true)
+LOCAL_SRC_FILES += \
+	AudioResamplermtk.cpp
+endif
 
 LOCAL_SRC_FILES += StateQueue.cpp
 
@@ -81,10 +85,6 @@ LOCAL_STATIC_LIBRARIES := \
     libscheduling_policy \
     libcpustats \
     libmedia_helper
-
-ifeq ($(BOARD_HAS_MTK_HARDWARE),true)
-    LOCAL_SHARED_LIBRARIES += libblisrc
-endif
 
 LOCAL_MODULE:= libaudioflinger
 
@@ -136,10 +136,6 @@ LOCAL_SHARED_LIBRARIES := \
     libcutils \
     libutils \
     liblog
-
-ifeq ($(BOARD_HAS_MTK_HARDWARE),true)
-    LOCAL_SHARED_LIBRARIES += libblisrc
-endif
 
 LOCAL_MODULE:= test-resample
 
