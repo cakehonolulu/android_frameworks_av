@@ -58,7 +58,7 @@ private:
     // bits to shift the phase fraction down to avoid overflow
     static const int kPreInterpShift = kNumPhaseBits - kNumInterpBits;
 
-    void init() {}
+    void init(int32_t SrcSampleRate) {}
     void reset();
     void resampleMono16(int32_t* out, size_t outFrameCount,
             AudioBufferProvider* provider);
@@ -98,7 +98,6 @@ bool AudioResampler::qualityIsSupported(src_quality quality)
 #endif
 #ifdef MTK_HARDWARE
     case MTK_QUALITY:
-    case MTK_QUALITY_32BIT:
 #endif
         return true;
     default:
@@ -122,8 +121,6 @@ void AudioResampler::init_routine()
             ALOGD("forcing AudioResampler quality to %d", defaultQuality);
 #ifdef QTI_RESAMPLER
             if (defaultQuality < DEFAULT_QUALITY || defaultQuality > QTI_QUALITY) {
-#elif defined(MTK_HARDWARE)
-            if (defaultQuality < DEFAULT_QUALITY || defaultQuality > MTK_QUALITY_32BIT) {
 #else
             if (defaultQuality < DEFAULT_QUALITY || defaultQuality > VERY_HIGH_QUALITY) {
 #endif
@@ -146,7 +143,6 @@ uint32_t AudioResampler::qualityMHz(src_quality quality)
         return 20;
 #ifdef MTK_HARDWARE
     case MTK_QUALITY:
-    case MTK_QUALITY_32BIT:
         return 28;
 #endif
     case VERY_HIGH_QUALITY:
@@ -162,7 +158,7 @@ static pthread_mutex_t mutex = PTHREAD_MUTEX_INITIALIZER;
 static uint32_t currentMHz = 0;
 
 AudioResampler* AudioResampler::create(int bitDepth, int inChannelCount,
-        int32_t sampleRate, src_quality quality) {
+        int32_t sampleRate, src_quality quality, int32_t SrcSampleRate) {
 
     bool atFinalQuality;
     if (quality == DEFAULT_QUALITY) {
@@ -194,7 +190,6 @@ AudioResampler* AudioResampler::create(int bitDepth, int inChannelCount,
         case DEFAULT_QUALITY:
 #ifdef MTK_HARDWARE
         case MTK_QUALITY:
-        case MTK_QUALITY_32BIT:
 #endif
         case LOW_QUALITY:
             atFinalQuality = true;
@@ -250,18 +245,11 @@ AudioResampler* AudioResampler::create(int bitDepth, int inChannelCount,
         ALOGV("Create MTK Resampler");
         resampler = new AudioResamplerMtk(bitDepth, inChannelCount, sampleRate);
         break;
-	    case MTK_QUALITY_32BIT:
-        ALOGD("Create MTK Resampler");
-#ifdef MTK_HD_AUDIO_ARCHITECTURE
-        resampler = new AudioResamplerMtk32(bitDepth, inChannelCount, sampleRate);
-#else
-        resampler = new AudioResamplerMtk(bitDepth, inChannelCount, sampleRate);
-#endif
 #endif
     }
 
     // initialize resampler
-    resampler->init();
+    resampler->init(SrcSampleRate);
     return resampler;
 }
 

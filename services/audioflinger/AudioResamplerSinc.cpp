@@ -487,7 +487,7 @@ AudioResamplerSinc::~AudioResamplerSinc() {
     free(mState);
 }
 
-void AudioResamplerSinc::init() {
+void AudioResamplerSinc::init(int32_t SrcSampleRate) {
     const Constants& c(*mConstants);
     const size_t numCoefs = 2 * c.halfNumCoefs;
     const size_t stateSize = numCoefs * mChannelCount * 2;

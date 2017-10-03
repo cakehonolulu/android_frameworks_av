@@ -46,16 +46,15 @@ public:
 #endif
 #ifdef MTK_HARDWARE
         MTK_QUALITY=5,
-        MTK_QUALITY_32BIT=6
 #endif
     };
 
     static AudioResampler* create(int bitDepth, int inChannelCount,
-            int32_t sampleRate, src_quality quality=DEFAULT_QUALITY);
+            int32_t sampleRate, src_quality quality=DEFAULT_QUALITY, int32_t SrcSampleRate=0);
 
     virtual ~AudioResampler();
 
-    virtual void init() = 0;
+    virtual void init(int32_t SrcSampleRate) = 0;
     virtual void setSampleRate(int32_t inSampleRate);
     virtual void setVolume(int16_t left, int16_t right);
     virtual void setLocalTimeFreq(uint64_t freq);

@@ -44,7 +44,7 @@ LOCAL_SRC_FILES:=               \
     ServiceUtilities.cpp        \
     AudioResamplerCubic.cpp.arm \
     AudioResamplerSinc.cpp.arm
-ifeq ($(MTK_HARDWARE),true)
+ifeq ($(BOARD_HAS_MTK_HARDWARE),true)
 LOCAL_SRC_FILES += \
 	AudioResamplermtk.cpp
 endif

@@ -53,7 +53,6 @@
 
 #include "AudioResampler.h"
 #include "AudioResamplermtk.h"
-#include <cutils/xlog.h>
 
 namespace android {
 // ----------------------------------------------------------------------------
@@ -67,9 +66,7 @@ AudioResamplerMtk::AudioResamplerMtk(int bitDepth,
     mOutputBuf(NULL),
     mOutputBufSize(0),
     mBliSrc(NULL)
-{
-
-}
+{}
 
 AudioResamplerMtk::~AudioResamplerMtk()
 {
@@ -92,7 +89,7 @@ void AudioResamplerMtk::init(int32_t SrcSampleRate)
     mBliSrc = new Blisrc(kDefaultInSampleRate,mChannelCount, mSampleRate, kDefaultOutChannelCount);
     if(mBliSrc != NULL)
     {
-        SXLOG_ASSERT(!mBliSrc->initCheck(),"Fail to open Blisrc");
+        ALOG_ASSERT(!mBliSrc->initCheck());
         if(!mBliSrc->initCheck()) // fail to init
         {
             delete mBliSrc;
@@ -219,7 +216,8 @@ AudioResamplerMtk::Blisrc::~Blisrc()
 {
     if(mInitCheck == OK )
     {
-        BLI_Close(mHandle,NULL);
+        // FIXME
+        //BLI_Close(mHandle,NULL);
         delete[] mWorkBuf;
     }
         
@@ -231,19 +229,21 @@ bool AudioResamplerMtk::Blisrc::initCheck()
 
 void AudioResamplerMtk::Blisrc::init()
 {
-    BLI_GetMemSize(mInSampleRate, mInChannelCount, mOutSampleRate, mOutChannelCount, &mWorkBufSize);
+    // FIXME
+    //BLI_GetMemSize(mInSampleRate, mInChannelCount, mOutSampleRate, mOutChannelCount, &mWorkBufSize);
     if(mWorkBufSize > 0 )
     {
         mWorkBuf = new int8_t[mWorkBufSize];
         if(mWorkBuf != NULL)
         {
             memset((void*)mWorkBuf,0,mWorkBufSize);
-            mHandle = BLI_Open(mInSampleRate, mInChannelCount, mOutSampleRate, mOutChannelCount,(char *)mWorkBuf,NULL);
+            // FIXME
+            /*mHandle = BLI_Open(mInSampleRate, mInChannelCount, mOutSampleRate, mOutChannelCount,(char *)mWorkBuf,NULL);
             if(mHandle != 0)
             {
                 mInitCheck = OK;
                 return;
-            }
+            }*/
             delete[] mWorkBuf;
         }
     }
@@ -252,21 +252,24 @@ void AudioResamplerMtk::Blisrc::init()
 int AudioResamplerMtk::Blisrc::setInSampleRate(int32_t inSampleRate)
 {
     mInSampleRate = inSampleRate;
-    return BLI_SetSamplingRate(mHandle,mInSampleRate);
+    // FIXME
+    return 0;
+    //return BLI_SetSamplingRate(mHandle,mInSampleRate);
 }
 
 int AudioResamplerMtk::Blisrc::resample(void * inBuf, size_t * pInSize, void *outBuf, size_t * pOutSize)
 {
-    return BLI_Convert(mHandle,(short*)inBuf, pInSize, (short*)outBuf, pOutSize);
+    // FIXME
+    return 0;
+    //return BLI_Convert(mHandle,(short*)inBuf, pInSize, (short*)outBuf, pOutSize);
 }
 
 int AudioResamplerMtk::Blisrc::reset()
 {
-    return BLI_Reset(mHandle);
+    // FIXME
+    return 0;
+    //return BLI_Reset(mHandle);
 }
-
 
 // ----------------------------------------------------------------------------
-}
-; // namespace android
-
+};

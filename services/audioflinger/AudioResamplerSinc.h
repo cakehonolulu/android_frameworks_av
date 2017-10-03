@@ -42,7 +42,7 @@ public:
     virtual void resample(int32_t* out, size_t outFrameCount,
             AudioBufferProvider* provider);
 private:
-    void init();
+    void init(int32_t SrcSampleRate);
 
     void reset();
 

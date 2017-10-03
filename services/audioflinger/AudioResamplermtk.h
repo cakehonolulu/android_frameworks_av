@@ -54,6 +54,7 @@
 
 #include "AudioResampler.h"
 #include "bli_exp.h"
+#include <cutils/log.h>
 #include <stdint.h>
 
 namespace android {
@@ -63,12 +64,12 @@ class AudioResamplerMtk : public AudioResampler {
 public:
     AudioResamplerMtk(int bitDepth, int inChannelCount, int32_t sampleRate);
 
-    virtual ~AudioResamplerMtk();
+    ~AudioResamplerMtk();
 	virtual void setSampleRate(int32_t inSampleRate);
     virtual void resample(int32_t* out, size_t outFrameCount,
             AudioBufferProvider* provider);
     virtual void reset(void);
-    virtual void init();
+    virtual void init(int32_t SrcSampleRate);
 
 private:
 	class Blisrc{

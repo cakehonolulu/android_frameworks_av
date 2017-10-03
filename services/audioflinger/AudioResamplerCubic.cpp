@@ -27,7 +27,7 @@
 namespace android {
 // ----------------------------------------------------------------------------
 
-void AudioResamplerCubic::init() {
+void AudioResamplerCubic::init(int32_t SrcSampleRate) {
     memset(&left, 0, sizeof(state));
     memset(&right, 0, sizeof(state));
 }
