@@ -98,7 +98,10 @@ enum {
     MTK_CAMERA_MSG_EXT_NOTIFY_SHUTTER           = 0x00000011, 
     //
     // for EM preview raw dump error notify
-    MTK_CAMERA_MSG_EXT_NOTIFY_RAW_DUMP_STOPPED  = 0x00000012
+    MTK_CAMERA_MSG_EXT_NOTIFY_RAW_DUMP_STOPPED  = 0x00000012,
+    //
+    // Gesture Detection
+    MTK_CAMERA_MSG_EXT_NOTIFY_GESTURE_DETECT  = 0x00000013
 };
 
 // extended data message related to MTK_CAMERA_MSG_EXT_DATA used in dataCallback functions
@@ -124,6 +127,27 @@ enum {
     //  Continuous Shot
     //      int[0]: current continuous shut number.
     MTK_CAMERA_MSG_EXT_DATA_CONTINUOUS_SHOT     = 0x00000004,
+    MTK_CAMERA_MSG_EXT_DATA_OT                  = 0x00000005,
+
+    //  Facebeauty Shot
+    //      int[0]: data type. 0:original image.
+    MTK_CAMERA_MSG_EXT_DATA_FACEBEAUTY          = 0x00000006,
+    //
+    //  MAV Shot
+    //      int[0]: data type. 0:original image.
+    MTK_CAMERA_MSG_EXT_DATA_MAV                 = 0x00000007,
+    //
+    //  HDR Shot
+    //      int[0]: data type. 0:0EV image.
+    MTK_CAMERA_MSG_EXT_DATA_HDR                 = 0x00000008,
+
+    //
+    // Motion Track
+    //  Params:
+    //      int[0]: 0: frame EIS, 1: captured image, 2: blended image, 3: intermediate data
+    //      int[1~]:depends on
+    //
+    MTK_CAMERA_MSG_EXT_DATA_MOTIONTRACK         = 0x00000009,
 
     //
     //  Compressed Image (not disable CAMERA_MSG_COMPRESSED_IMAGE)
@@ -174,6 +198,8 @@ enum {
     CAMERA_CMD_CANCEL_PANORAMA, 
     CAMERA_CMD_START_SD_PREVIEW,            //(Smile Detection)
     CAMERA_CMD_CANCEL_SD_PREVIEW,           //(Smile Detection)
+    CAMERA_CMD_START_OT, 
+    CAMERA_CMD_STOP_OT,
     CAMERA_CMD_START_MAV, 
     CAMERA_CMD_STOP_MAV, 
     CAMERA_CMD_START_AUTORAMA, 
@@ -181,7 +207,18 @@ enum {
     CAMERA_CMD_GET_MEM_INFO,                //For Video to get PMEM buffer info
     CAMERA_CMD_GET_REC_BUF_INFO, 
     CAMERA_CMD_CANCEL_CSHOT,
-    CAMERA_CMD_SET_CSHOT_SPEED,               
+    CAMERA_CMD_SET_CSHOT_SPEED,
+#ifdef MTK_S3D_SUPPORT
+    CAMERA_CMD_START_3DSHOT,
+    CAMERA_CMD_STOP_3DSHOT,
+#endif
+    CAMERA_CMD_START_MOTIONTRACK,
+    CAMERA_CMD_STOP_MOTIONTRACK,
+    CAMERA_CMD_START_CLONECAMERA,
+    CAMERA_CMD_SHOT_CLONECAMERA,
+    CAMERA_CMD_STOP_CLONECAMERA,
+    CAMERA_CMD_START_GD_PREVIEW,            //(Gesture Detection)
+    CAMERA_CMD_CANCEL_GD_PREVIEW,           //(Gesture Detection)
 };
 
 /*

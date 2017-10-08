@@ -48,7 +48,6 @@
 
 #ifdef MTK_MT6589
 #include <camera/MtkCameraParameters.h>
-#include <camera/MtkCameraProfile.h>
 #endif
 
 namespace android {
@@ -415,8 +414,6 @@ status_t CameraService::connect(
         int clientUid,
         /*out*/
         sp<ICamera>& device) {
-
-    CFPT::initCameraProfile();
 
     String8 clientName8(clientPackageName);
     int callingPid = getCallingPid();

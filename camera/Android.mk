@@ -26,9 +26,7 @@ LOCAL_SRC_FILES:= \
 ifeq ($(TARGET_BOARD_PLATFORM),mt6589)
 LOCAL_SRC_FILES += \
 	MtkCamera.cpp \
-	MtkCameraParameters.cpp \
-	MtkCameraMMP.cpp \
-	MtkCameraProfile.cpp
+	MtkCameraParameters.cpp
 endif
 
 LOCAL_SHARED_LIBRARIES := \

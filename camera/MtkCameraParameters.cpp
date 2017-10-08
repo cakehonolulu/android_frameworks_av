@@ -95,7 +95,16 @@ const char MtkCameraParameters::KEY_FB_SKIN_COLOR_MAX[]     = "fb-skin-color-max
 const char MtkCameraParameters::KEY_FB_SHARP[]              = "fb-sharp";
 const char MtkCameraParameters::KEY_FB_SHARP_MIN[]          = "fb-sharp-min";
 const char MtkCameraParameters::KEY_FB_SHARP_MAX[]          = "fb-sharp-max";
-
+//
+const char MtkCameraParameters::KEY_FB_ENLARGE_EYE[]        = "fb-enlarge-eye";
+const char MtkCameraParameters::KEY_FB_ENLARGE_EYE_MIN[]    = "fb-enlarge-eye-min";
+const char MtkCameraParameters::KEY_FB_ENLARGE_EYE_MAX[]    = "fb-enlarge-eye-max";
+//
+const char MtkCameraParameters::KEY_FB_SLIM_FACE[]          = "fb-slim-face";
+const char MtkCameraParameters::KEY_FB_SLIM_FACE_MIN[]      = "fb-slim-face-min";
+const char MtkCameraParameters::KEY_FB_SLIM_FACE_MAX[]      = "fb-slim-face-max";
+//
+const char MtkCameraParameters::KEY_FB_EXTREME_BEAUTY[]     = "fb-extreme-beauty";
 
 //
 const char MtkCameraParameters::KEY_EXPOSURE[] = "exposure";
@@ -157,7 +166,7 @@ const char MtkCameraParameters::KEY_AWB2PASS[] = "awb-2pass";
 
 //
 //  Camera Mode
-const char MtkCameraParameters::KEY_CAMERA_MODE[] = "cam-mode";
+const char MtkCameraParameters::KEY_CAMERA_MODE[] = "mtk-cam-mode";
 // Values for KEY_CAMERA_MODE
 const int MtkCameraParameters::CAMERA_MODE_NORMAL  = 0;
 const int MtkCameraParameters::CAMERA_MODE_MTK_PRV = 1;
@@ -179,16 +188,18 @@ const char MtkCameraParameters::CAPTURE_MODE_NORMAL[] = "normal";
 const char MtkCameraParameters::CAPTURE_MODE_BEST_SHOT[] = "bestshot";
 const char MtkCameraParameters::CAPTURE_MODE_EV_BRACKET_SHOT[] = "evbracketshot";
 const char MtkCameraParameters::CAPTURE_MODE_SMILE_SHOT[] = "smileshot";
-const char MtkCameraParameters::CAPTURE_MODE_MAV_SHOT[] = "mav"; 
-const char MtkCameraParameters::CAPTURE_MODE_AUTO_PANORAMA_SHOT[] = "autorama"; 
-const char MtkCameraParameters::CAPTURE_MODE_HDR_SHOT[] = "hdr"; 
-const char MtkCameraParameters::CAPTURE_MODE_ASD_SHOT[] = "asd"; 
+const char MtkCameraParameters::CAPTURE_MODE_MAV_SHOT[] = "mav";
+const char MtkCameraParameters::CAPTURE_MODE_AUTO_PANORAMA_SHOT[] = "autorama";
+const char MtkCameraParameters::CAPTURE_MODE_MOTION_TRACK_SHOT[] = "motiontrack";
+const char MtkCameraParameters::CAPTURE_MODE_HDR_SHOT[] = "hdr";
+const char MtkCameraParameters::CAPTURE_MODE_ASD_SHOT[] = "asd";
 const char MtkCameraParameters::CAPTURE_MODE_ZSD_SHOT[] = "zsd";
-const char MtkCameraParameters::CAPTURE_MODE_PANO_3D[] = "pano_3d"; 
-const char MtkCameraParameters::CAPTURE_MODE_SINGLE_3D[] = "single_3d"; 
-const char MtkCameraParameters::CAPTURE_MODE_FACE_BEAUTY[] = "face_beauty"; 
+const char MtkCameraParameters::CAPTURE_MODE_PANO_3D[] = "pano_3d";
+const char MtkCameraParameters::CAPTURE_MODE_SINGLE_3D[] = "single_3d";
+const char MtkCameraParameters::CAPTURE_MODE_FACE_BEAUTY[] = "face_beauty";
 const char MtkCameraParameters::CAPTURE_MODE_CONTINUOUS_SHOT[] = "continuousshot";
 const char MtkCameraParameters::CAPTURE_MODE_MULTI_MOTION[] = "multi_motion";
+const char MtkCameraParameters::CAPTURE_MODE_GESTURE_SHOT[] = "gestureshot";
 
 // Values for panorama direction settings
 const char MtkCameraParameters::PANORAMA_DIR_RIGHT[] = "right";
@@ -230,6 +241,16 @@ const char MtkCameraParameters::KEY_AF_Y[] = "af-y";
 const char MtkCameraParameters::EFFECT_SEPIA_BLUE[] = "sepiablue";
 const char MtkCameraParameters::EFFECT_SEPIA_GREEN[] = "sepiagreen";
 
+const char MtkCameraParameters::EFFECT_NASHVILLE[] = "nashville";
+const char MtkCameraParameters::EFFECT_HEFE[] = "hefe";
+const char MtkCameraParameters::EFFECT_VALENCIA[] = "valencia";
+const char MtkCameraParameters::EFFECT_XPROII[] = "xproll";
+const char MtkCameraParameters::EFFECT_LOFI[] = "lofi";
+const char MtkCameraParameters::EFFECT_SIERRA[] = "sierra";
+const char MtkCameraParameters::EFFECT_KELVIN[] = "kelvin";
+const char MtkCameraParameters::EFFECT_WALDEN[] = "walden";
+const char MtkCameraParameters::EFFECT_F1977[] = "f1977";
+
 //
 //  on/off => FIXME: should be replaced with TRUE[]
 const char MtkCameraParameters::ON[] = "on";
@@ -242,6 +263,7 @@ const char MtkCameraParameters::KEY_RAW_SAVE_MODE[] = "rawsave-mode";
 const char MtkCameraParameters::KEY_RAW_PATH[] = "rawfname";
 
 const char MtkCameraParameters::KEY_FAST_CONTINUOUS_SHOT[] = "fast-continuous-shot";
+const char MtkCameraParameters::KEY_CSHOT_INDICATOR[] = "cshot-indicator";
 
 // AF EM MODE
 const char MtkCameraParameters::KEY_FOCUS_ENG_MODE[]		= "afeng-mode";
@@ -255,6 +277,60 @@ const char MtkCameraParameters::KEY_PREVIEW_DUMP_RESOLUTION[] = "preview-dump-re
 const int MtkCameraParameters::PREVIEW_DUMP_RESOLUTION_NORMAL  = 0;
 const int MtkCameraParameters::PREVIEW_DUMP_RESOLUTION_CROP  = 1;
 
+//
+const char MtkCameraParameters::KEY_MAX_NUM_DETECTED_OBJECT[] = "max-num-ot";
+//
+
 const char MtkCameraParameters::KEY_VIDEO_HDR[] = "video-hdr"; 
+
+// KEY for [Engineer Mode] Add new camera paramters for new requirements
+const char MtkCameraParameters::KEY_ENG_AE_ENABLE[] = "eng-ae-enable";
+const char MtkCameraParameters::KEY_ENG_PREVIEW_SHUTTER_SPEED[] = "eng-preview-shutter-speed";
+const char MtkCameraParameters::KEY_ENG_PREVIEW_SENSOR_GAIN[] = "eng-preview-sensor-gain";
+const char MtkCameraParameters::KEY_ENG_PREVIEW_ISP_GAIN[] = "eng-preview-isp-gain";
+const char MtkCameraParameters::KEY_ENG_PREVIEW_AE_INDEX[] = "eng-preview-ae-index";
+const char MtkCameraParameters::KEY_ENG_CAPTURE_SENSOR_GAIN[] = "eng-capture-sensor-gain";
+const char MtkCameraParameters::KEY_ENG_CAPTURE_ISP_GAIN[] = "eng-capture-isp-gain";
+const char MtkCameraParameters::KEY_ENG_CAPTURE_SHUTTER_SPEED[] = "eng-capture-shutter-speed";
+const char MtkCameraParameters::KEY_ENG_CAPTURE_ISO[] = "eng-capture-iso";
+const char MtkCameraParameters::KEY_ENG_FLASH_DUTY_VALUE[] = "eng-flash-duty-value";
+const char MtkCameraParameters::KEY_ENG_FLASH_DUTY_MIN[] = "eng-flash-duty-min";
+const char MtkCameraParameters::KEY_ENG_FLASH_DUTY_MAX[] = "eng-flash-duty-max";
+const char MtkCameraParameters::KEY_ENG_ZSD_ENABLE[] = "eng-zsd-enable";
+const char MtkCameraParameters::KEY_SENSOR_TYPE[] = "sensor-type";
+const char MtkCameraParameters::KEY_ENG_PREVIEW_FPS[] = "eng-preview-fps";
+const char MtkCameraParameters::KEY_ENG_MSG[] = "eng-msg";
+const int  MtkCameraParameters::KEY_ENG_FLASH_DUTY_DEFAULT_VALUE = -1;
+const int  MtkCameraParameters::KEY_ENG_FLASH_STEP_DEFAULT_VALUE = -1;
+const char MtkCameraParameters::KEY_ENG_FLASH_STEP_MIN[] = "eng-flash-step-min";
+const char MtkCameraParameters::KEY_ENG_FLASH_STEP_MAX[] = "eng-flash-step-max";
+const char MtkCameraParameters::KEY_ENG_FOCUS_FULLSCAN_FRAME_INTERVAL[] = "eng-focus-fullscan-frame-interval";
+const char MtkCameraParameters::KEY_ENG_FOCUS_FULLSCAN_FRAME_INTERVAL_MAX[] = "eng-focus-fullscan-frame-interval-max";
+const char MtkCameraParameters::KEY_ENG_FOCUS_FULLSCAN_FRAME_INTERVAL_MIN[] = "eng-focus-fullscan-frame-interval-min";
+const int  MtkCameraParameters::KEY_ENG_FOCUS_FULLSCAN_FRAME_INTERVAL_MAX_DEFAULT = 65535;
+const int  MtkCameraParameters::KEY_ENG_FOCUS_FULLSCAN_FRAME_INTERVAL_MIN_DEFAULT = 0;
+const char MtkCameraParameters::KEY_ENG_PREVIEW_FRAME_INTERVAL_IN_US[] = "eng-preview-frame-interval-in-us";
+const char MtkCameraParameters::KEY_ENG_PARAMETER1[] = "key-eng-parameter1";
+const char MtkCameraParameters::KEY_ENG_PARAMETER2[] = "key-eng-parameter2";
+const char MtkCameraParameters::KEY_ENG_PARAMETER3[] = "key-eng-parameter3";
+
+const char MtkCameraParameters::KEY_ENG_SAVE_SHADING_TABLE[] = "eng-save-shading-table";
+const char MtkCameraParameters::KEY_ENG_SHADING_TABLE[] = "eng-shading-table";
+const int MtkCameraParameters::KEY_ENG_SHADING_TABLE_AUTO = 0;
+const int MtkCameraParameters::KEY_ENG_SHADING_TABLE_LOW = 1;
+const int MtkCameraParameters::KEY_ENG_SHADING_TABLE_MIDDLE = 2;
+const int MtkCameraParameters::KEY_ENG_SHADING_TABLE_HIGH = 3;
+const int MtkCameraParameters::KEY_ENG_SHADING_TABLE_TSF = 4;
+
+// KEY for [Engineer Mode] Add new camera paramters for ev calibration
+const char MtkCameraParameters::KEY_ENG_EV_CALBRATION_OFFSET_VALUE[] = "eng-ev-cal-offset";
+
+#ifdef MTK_SLOW_MOTION_VIDEO_SUPPORT
+// High Speed Video Record
+const char MtkCameraParameters::KEY_HSVR_PRV_SIZE[] = "hsvr-prv-size";
+const char MtkCameraParameters::KEY_SUPPORTED_HSVR_PRV_SIZE[] = "hsvr-prv-size-values";
+const char MtkCameraParameters::KEY_HSVR_PRV_FPS[] = "hsvr-prv-fps";
+const char MtkCameraParameters::KEY_SUPPORTED_HSVR_PRV_FPS[] = "hsvr-prv-fps-values";
+#endif
 
 }; // namespace android

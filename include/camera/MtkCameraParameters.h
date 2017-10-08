@@ -111,6 +111,16 @@ public:
     static const char KEY_FB_SHARP_MIN[];
     static const char KEY_FB_SHARP_MAX[];
     //
+    static const char KEY_FB_ENLARGE_EYE[];
+    static const char KEY_FB_ENLARGE_EYE_MIN[];
+    static const char KEY_FB_ENLARGE_EYE_MAX[];
+    //
+    static const char KEY_FB_SLIM_FACE[];
+    static const char KEY_FB_SLIM_FACE_MIN[];
+    static const char KEY_FB_SLIM_FACE_MAX[];
+    //
+    static const char KEY_FB_EXTREME_BEAUTY[];
+    //
 //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 //  
 //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
@@ -187,7 +197,8 @@ public:
     static const char CAPTURE_MODE_BEST_SHOT[];
     static const char CAPTURE_MODE_EV_BRACKET_SHOT[];
     static const char CAPTURE_MODE_SMILE_SHOT[];
-    static const char CAPTURE_MODE_AUTO_PANORAMA_SHOT[]; 
+    static const char CAPTURE_MODE_AUTO_PANORAMA_SHOT[];
+    static const char CAPTURE_MODE_MOTION_TRACK_SHOT[];
     static const char CAPTURE_MODE_MAV_SHOT[]; 
     static const char CAPTURE_MODE_HDR_SHOT[]; 
     static const char CAPTURE_MODE_ASD_SHOT[];
@@ -197,6 +208,7 @@ public:
     static const char CAPTURE_MODE_FACE_BEAUTY[];   
     static const char CAPTURE_MODE_CONTINUOUS_SHOT[];
     static const char CAPTURE_MODE_MULTI_MOTION[];
+    static const char CAPTURE_MODE_GESTURE_SHOT[];
 
     // Values for KEY_PANORAMA_DIR
     static const char PANORAMA_DIR_RIGHT[];
@@ -290,7 +302,16 @@ public:
 
     // Values for effect 
     static const char EFFECT_SEPIA_BLUE[];
-    static const char EFFECT_SEPIA_GREEN[];    
+    static const char EFFECT_SEPIA_GREEN[];
+    static const char  EFFECT_NASHVILLE[];
+    static const char  EFFECT_HEFE[];
+    static const char  EFFECT_VALENCIA[];
+    static const char  EFFECT_XPROII[];
+    static const char  EFFECT_LOFI[];
+    static const char  EFFECT_SIERRA[];
+    static const char  EFFECT_KELVIN[];
+    static const char  EFFECT_WALDEN[];;
+    static const char  EFFECT_F1977[];
     // Values for AWB 
     static const char WHITE_BALANCE_TUNGSTEN[];
     // Eng
@@ -304,7 +325,60 @@ public:
     static const char KEY_FAST_CONTINUOUS_SHOT[];
 
     static const char KEY_VIDEO_HDR[];
+    static const char KEY_MAX_NUM_DETECTED_OBJECT[];
 
+    // KEY for c_shot indicator 
+    static const char KEY_CSHOT_INDICATOR[];
+
+    // KEY for [Engineer Mode] Add new camera paramters for new requirements
+    static const char KEY_ENG_AE_ENABLE[];
+    static const char KEY_ENG_PREVIEW_SHUTTER_SPEED[];
+    static const char KEY_ENG_PREVIEW_SENSOR_GAIN[];
+    static const char KEY_ENG_PREVIEW_ISP_GAIN[];
+    static const char KEY_ENG_PREVIEW_AE_INDEX[];
+    static const char KEY_ENG_CAPTURE_SENSOR_GAIN[];
+    static const char KEY_ENG_CAPTURE_ISP_GAIN[];
+    static const char KEY_ENG_CAPTURE_SHUTTER_SPEED[];
+    static const char KEY_ENG_CAPTURE_ISO[];
+    static const char KEY_ENG_FLASH_DUTY_VALUE[];
+    static const char KEY_ENG_FLASH_DUTY_MIN[];
+    static const char KEY_ENG_FLASH_DUTY_MAX[];
+    static const char KEY_ENG_ZSD_ENABLE[];
+    static const char KEY_SENSOR_TYPE[];
+    static const char KEY_ENG_PREVIEW_FPS[];
+    static const char KEY_ENG_MSG[];
+    static const int  KEY_ENG_FLASH_DUTY_DEFAULT_VALUE;
+    static const int  KEY_ENG_FLASH_STEP_DEFAULT_VALUE;
+    static const char KEY_ENG_FLASH_STEP_MIN[];
+    static const char KEY_ENG_FLASH_STEP_MAX[];
+    static const char KEY_ENG_FOCUS_FULLSCAN_FRAME_INTERVAL[];
+    static const char KEY_ENG_FOCUS_FULLSCAN_FRAME_INTERVAL_MAX[];
+    static const char KEY_ENG_FOCUS_FULLSCAN_FRAME_INTERVAL_MIN[];
+    static const int  KEY_ENG_FOCUS_FULLSCAN_FRAME_INTERVAL_MAX_DEFAULT;
+    static const int  KEY_ENG_FOCUS_FULLSCAN_FRAME_INTERVAL_MIN_DEFAULT;
+    static const char KEY_ENG_PREVIEW_FRAME_INTERVAL_IN_US[];
+    static const char KEY_ENG_PARAMETER1[];
+    static const char KEY_ENG_PARAMETER2[];
+    static const char KEY_ENG_PARAMETER3[];
+
+    static const char KEY_ENG_SAVE_SHADING_TABLE[];
+    static const char KEY_ENG_SHADING_TABLE[];
+    static const int KEY_ENG_SHADING_TABLE_AUTO;
+    static const int KEY_ENG_SHADING_TABLE_LOW;
+    static const int KEY_ENG_SHADING_TABLE_MIDDLE;
+    static const int KEY_ENG_SHADING_TABLE_HIGH;
+    static const int KEY_ENG_SHADING_TABLE_TSF;
+
+    // KEY for [Engineer Mode] Add new camera paramters for ev calibration
+    static const char KEY_ENG_EV_CALBRATION_OFFSET_VALUE[];
+
+#ifdef MTK_SLOW_MOTION_VIDEO_SUPPORT
+    // High Speed Video Record
+    static const char KEY_HSVR_PRV_SIZE[];
+    static const char KEY_SUPPORTED_HSVR_PRV_SIZE[];
+    static const char KEY_HSVR_PRV_FPS[];
+    static const char KEY_SUPPORTED_HSVR_PRV_FPS[];
+#endif
     //
 public:     ////    on/off => FIXME: should be replaced with TRUE[]
     static const char ON[];
